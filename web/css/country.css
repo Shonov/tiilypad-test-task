@@ -1,0 +1,38 @@
+.main {
+    display: flex;
+    align-items: flex-start;
+}
+
+.main__container {
+    flex-basis: 50%;
+}
+
+.cities {
+    margin-left: 50px;
+    display: none;
+}
+
+.cities__title {
+    padding: 0;
+    margin-top: 0;
+}
+
+.cities__content {}
+
+.cities__item {
+    margin-left: 15px;
+}
+
+@media (max-width: 640px) {
+    .main {
+        flex-wrap: wrap;
+    }
+
+    .main__container {
+        flex-basis: 100%;
+    }
+
+    .cities {
+        margin-left: 0;
+    }
+}

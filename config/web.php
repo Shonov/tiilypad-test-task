@@ -12,6 +12,19 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'rules' => [
+                'dashboard' => 'site/index',
+
+                'POST <controller:[\w-]+>' => '<controller>/create',
+                '<controller:[\w-]+>s' => '<controller>/index',
+
+                'PUT <controller:[\w-]+>/<id:\d+>'    => '<controller>/update',
+                'DELETE <controller:[\w-]+>/<id:\d+>' => '<controller>/delete',
+                '<controller:[\w-]+>/<id:\d+>'        => '<controller>/view',
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'QEq8FJQJkJserwhKjV1832SpvqzNN2pl',
