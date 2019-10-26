@@ -8,6 +8,9 @@ use yii\web\Response;
 
 class CountryController extends \yii\web\Controller
 {
+    /**
+     * @return string
+     */
     public function actionIndex()
     {
         $countries = Country::find()->orderBy('title')->all();
@@ -16,6 +19,12 @@ class CountryController extends \yii\web\Controller
         ]);
     }
 
+    /**
+     * ajax request processing
+     *
+     * @param $id
+     * @return array
+     */
     public function actionSample($id)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;

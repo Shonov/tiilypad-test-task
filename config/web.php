@@ -6,7 +6,7 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'assetsAutoCompress'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -14,16 +14,7 @@ $config = [
     'components' => [
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'rules' => [
-                'dashboard' => 'site/index',
-
-                'POST <controller:[\w-]+>' => '<controller>/create',
-                '<controller:[\w-]+>s' => '<controller>/index',
-
-                'PUT <controller:[\w-]+>/<id:\d+>'    => '<controller>/update',
-                'DELETE <controller:[\w-]+>/<id:\d+>' => '<controller>/delete',
-                '<controller:[\w-]+>/<id:\d+>'        => '<controller>/view',
-            ],
+            'showScriptName' => false,
         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -56,14 +47,38 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
+        'assetsAutoCompress' => [
+            'class'   => '\skeeks\yii2\assetsAuto\AssetsAutoCompressComponent',
+            'enabled' => true,
+
+            'readFileTimeout' => 3,           //Time in seconds for reading each asset file
+
+            'jsCompress'                => true,        //Enable minification js in html code
+            'jsCompressFlaggedComments' => true,        //Cut comments during processing js
+
+            'cssCompress' => true,        //Enable minification css in html code
+
+            'cssFileCompile'        => true,        //Turning association css files
+            'cssFileRemouteCompile' => false,       //Trying to get css files to which the specified path as the remote file, skchat him to her.
+            'cssFileCompress'       => true,        //Enable compression and processing before being stored in the css file
+            'cssFileBottom'         => false,       //Moving down the page css files
+            'cssFileBottomLoadOnJs' => false,       //Transfer css file down the page and uploading them using js
+
+            'jsFileCompile'                 => true,        //Turning association js files
+            'jsFileRemouteCompile'          => false,       //Trying to get a js files to which the specified path as the remote file, skchat him to her.
+            'jsFileCompress'                => true,        //Enable compression and processing js before saving a file
+            'jsFileCompressFlaggedComments' => true,        //Cut comments during processing js
+
+            'noIncludeJsFilesOnPjax' => true,        //Do not connect the js files when all pjax requests
+
+            'htmlFormatter' => [
+                //Enable compression html
+                'class'         => 'skeeks\yii2\assetsAuto\formatters\html\TylerHtmlCompressor',
+                'extra'         => true,       //use more compact algorithm
+                'noComments'    => true,        //cut all the html comments
+                'maxNumberRows' => 50000,       //The maximum number of rows that the formatter runs on
             ],
         ],
-        */
     ],
     'params' => $params,
 ];

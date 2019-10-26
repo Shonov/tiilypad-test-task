@@ -1,6 +1,8 @@
 'use strict';
 
 $().ready(function () {
+
+  // event listener to disable the selected option and retrieve the cities
   $('.picker-countries').on('change', function () {
     let selectedOption = $(this).find("option:selected");
     selectedOption.attr('disabled','disabled').siblings().removeAttr('disabled');
